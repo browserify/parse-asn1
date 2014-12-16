@@ -9,6 +9,9 @@ function parseKeys(buffer, crypto) {
     password = buffer.passphrase;
     buffer = buffer.key;
   }
+  if (typeof buffer === 'string') {
+    buffer = new Buffer(buffer);
+  }
   var stripped = pemstrip.strip(buffer);
   var type = stripped.tag;
   var data = new Buffer(stripped.base64, 'base64');
