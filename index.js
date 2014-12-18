@@ -1,6 +1,7 @@
 var pemstrip = require('pemstrip');
 var asn1 = require('./asn1');
 var aesid = require('./aesid.json');
+var fixProc = require('./fixProc');
 module.exports = parseKeys;
 
 function parseKeys(buffer, crypto) {
@@ -11,6 +12,9 @@ function parseKeys(buffer, crypto) {
   }
   if (typeof buffer === 'string') {
     buffer = new Buffer(buffer);
+  }
+  if (password) {
+    buffer = fixProc(buffer, password, crypto);
   }
   var stripped = pemstrip.strip(buffer);
   var type = stripped.tag;
