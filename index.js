@@ -28,6 +28,13 @@ function parseKeys(buffer, crypto) {
             type: 'ec',
             data:  asn1.ECPublicKey.decode(data, 'der')
           };
+        case '1.2.840.10040.4.1':
+          ndata = asn1.DSAPublicKey.decode(data, 'der');
+          ndata.algorithm.parameters.pub_key = asn1.DSAparam.decode(ndata.subjectPublicKey.data, 'der');
+          return {
+            type: 'dsa',
+            data: ndata.algorithm.parameters
+          };
         default: throw new Error('unknown key id ' +  subtype);
       }
       throw new Error('unknown key type ' +  type);
@@ -47,6 +54,13 @@ function parseKeys(buffer, crypto) {
             curve: ndata.algorithm.curve,
             privateKey: asn1.ECPrivateKey.decode(ndata.subjectPrivateKey, 'der').privateKey
           };
+        case '1.2.840.10040.4.1':
+          ndata =  asn1.DSAPrivateWrap.decode(data, 'der');
+          ndata.algorithm.parameters.priv_key = asn1.DSAparam.decode(ndata.subjectPrivateKey, 'der');
+          return {
+            type: 'dsa',
+            params: ndata.algorithm.parameters
+          };
         default: throw new Error('unknown key id ' +  subtype);
       }
       throw new Error('unknown key type ' +  type);
@@ -54,6 +68,11 @@ function parseKeys(buffer, crypto) {
       return asn1.RSAPublicKey.decode(data, 'der');
     case 'RSA PRIVATE KEY':
       return asn1.RSAPrivateKey.decode(data, 'der');
+    case 'DSA PRIVATE KEY':
+      return {
+        type: 'dsa',
+        params: asn1.DSAPrivateKey.decode(data, 'der')
+      };
     case 'EC PRIVATE KEY':
       data = asn1.ECPrivateKey.decode(data, 'der');
       return {
@@ -63,6 +82,7 @@ function parseKeys(buffer, crypto) {
     default: throw new Error('unknown key type ' +  type);
   }
 }
+parseKeys.signature = asn1.signature;
 function decrypt(crypto, data, password) {
   var salt = data.algorithm.decrypt.kde.kdeparams.salt;
   var iters = data.algorithm.decrypt.kde.kdeparams.iters;
