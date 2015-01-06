@@ -13,8 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "asn1.js": "^0.7.0",
-    "asn1.js-rfc3280": "^0.5.1",
+    "asn1.js": "^1.0.0",
+    "asn1.js-rfc3280": "^1.0.0",
     "pemstrip": "0.0.1"
   }
 }
