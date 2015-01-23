@@ -1,4 +1,3 @@
-var pemstrip = require('pemstrip');
 var asn1 = require('./asn1');
 var aesid = require('./aesid.json');
 var fixProc = require('./fixProc');
@@ -13,12 +12,11 @@ function parseKeys(buffer, crypto) {
   if (typeof buffer === 'string') {
     buffer = new Buffer(buffer);
   }
-  if (password) {
-    buffer = fixProc(buffer, password, crypto);
-  }
-  var stripped = pemstrip.strip(buffer);
+
+  var stripped = fixProc(buffer, password, crypto);
+
   var type = stripped.tag;
-  var data = new Buffer(stripped.base64, 'base64');
+  var data = stripped.data;
   var subtype,ndata;
   switch (type) {
     case 'PUBLIC KEY':
