@@ -3,7 +3,8 @@ var findProc = /Proc-Type: 4,ENCRYPTED\n\r?DEK-Info: AES-((?:128)|(?:192)|(?:256
 var startRegex =/^-----BEGIN (.*) KEY-----\n/m;
 var fullRegex = /^-----BEGIN (.*) KEY-----\n\r?([0-9A-z\n\r\+\/\=]+)\n\r?-----END \1 KEY-----$/m;
 var evp = require('./EVP_BytesToKey');
-module.exports = function (okey, password, crypto) {
+var ciphers = require('browserify-aes');
+module.exports = function (okey, password) {
   var key = okey.toString();
   var match = key.match(findProc);
   var decrypted;
@@ -14,9 +15,9 @@ module.exports = function (okey, password, crypto) {
     var suite = 'aes' + match[1];
     var iv = new Buffer(match[2], 'hex');
     var cipherText = new Buffer(match[3].replace(/\n\r?/g, ''), 'base64');
-    var cipherKey = evp(crypto, password, iv.slice(0,8), parseInt(match[1]));
+    var cipherKey = evp(password, iv.slice(0,8), parseInt(match[1]));
     var out = [];
-    var cipher = crypto.createDecipheriv(suite, cipherKey, iv);
+    var cipher = ciphers.createDecipheriv(suite, cipherKey, iv);
     out.push(cipher.update(cipherText));
     out.push(cipher.final());
     decrypted = Buffer.concat(out);

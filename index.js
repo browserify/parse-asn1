@@ -1,9 +1,11 @@
 var asn1 = require('./asn1');
 var aesid = require('./aesid.json');
 var fixProc = require('./fixProc');
+var ciphers = require('browserify-aes');
+var compat = require('pbkdf2-compat');
 module.exports = parseKeys;
 
-function parseKeys(buffer, crypto) {
+function parseKeys(buffer) {
   var password;
   if (typeof buffer === 'object' && !Buffer.isBuffer(buffer)) {
     password = buffer.passphrase;
@@ -13,7 +15,7 @@ function parseKeys(buffer, crypto) {
     buffer = new Buffer(buffer);
   }
 
-  var stripped = fixProc(buffer, password, crypto);
+  var stripped = fixProc(buffer, password);
 
   var type = stripped.tag;
   var data = stripped.data;
@@ -42,7 +44,7 @@ function parseKeys(buffer, crypto) {
       throw new Error('unknown key type ' +  type);
     case 'ENCRYPTED PRIVATE KEY':
       data = asn1.EncryptedPrivateKey.decode(data, 'der');
-      data = decrypt(crypto, data, password);
+      data = decrypt(data, password);
       //falling through
     case 'PRIVATE KEY':
       ndata = asn1.PrivateKey.decode(data, 'der');
@@ -83,15 +85,15 @@ function parseKeys(buffer, crypto) {
   }
 }
 parseKeys.signature = asn1.signature;
-function decrypt(crypto, data, password) {
+function decrypt(data, password) {
   var salt = data.algorithm.decrypt.kde.kdeparams.salt;
   var iters = data.algorithm.decrypt.kde.kdeparams.iters;
   var algo = aesid[data.algorithm.decrypt.cipher.algo.join('.')];
   var iv = data.algorithm.decrypt.cipher.iv;
   var cipherText = data.subjectPrivateKey;
   var keylen = parseInt(algo.split('-')[1], 10)/8;
-  var key = crypto.pbkdf2Sync(password, salt, iters, keylen);
-  var cipher = crypto.createDecipheriv(algo, key, iv);
+  var key = compat.pbkdf2Sync(password, salt, iters, keylen);
+  var cipher = ciphers.createDecipheriv(algo, key, iv);
   var out = [];
   out.push(cipher.update(cipherText));
   out.push(cipher.final());
