@@ -1,3 +1,4 @@
+'use strict';
 var asn1 = require('./asn1');
 var aesid = require('./aesid.json');
 var fixProc = require('./fixProc');
@@ -19,10 +20,14 @@ function parseKeys(buffer) {
 
   var type = stripped.tag;
   var data = stripped.data;
-  var subtype,ndata;
+  var subtype, ndata;
   switch (type) {
+    case 'CERTIFICATE':
+      ndata = asn1.certificate.decode(data, 'der').tbsCertificate.subjectPublicKeyInfo;
     case 'PUBLIC KEY':
-      ndata = asn1.PublicKey.decode(data, 'der');
+      if (!ndata) {
+        ndata = asn1.PublicKey.decode(data, 'der');
+      }
       subtype = ndata.algorithm.algorithm.join('.');
       switch(subtype) {
         case '1.2.840.113549.1.1.1':
@@ -31,7 +36,7 @@ function parseKeys(buffer) {
         ndata.subjectPrivateKey = ndata.subjectPublicKey;
           return {
             type: 'ec',
-            data:  ndata
+            data: ndata
           };
         case '1.2.840.10040.4.1':
           ndata.algorithm.params.pub_key = asn1.DSAparam.decode(ndata.subjectPublicKey.data, 'der');
@@ -39,9 +44,9 @@ function parseKeys(buffer) {
             type: 'dsa',
             data: ndata.algorithm.params
           };
-        default: throw new Error('unknown key id ' +  subtype);
+        default: throw new Error('unknown key id ' + subtype);
       }
-      throw new Error('unknown key type ' +  type);
+      throw new Error('unknown key type ' + type);
     case 'ENCRYPTED PRIVATE KEY':
       data = asn1.EncryptedPrivateKey.decode(data, 'der');
       data = decrypt(data, password);
@@ -63,9 +68,9 @@ function parseKeys(buffer) {
             type: 'dsa',
             params: ndata.algorithm.params
           };
-        default: throw new Error('unknown key id ' +  subtype);
+        default: throw new Error('unknown key id ' + subtype);
       }
-      throw new Error('unknown key type ' +  type);
+      throw new Error('unknown key type ' + type);
     case 'RSA PUBLIC KEY':
       return asn1.RSAPublicKey.decode(data, 'der');
     case 'RSA PRIVATE KEY':
@@ -81,7 +86,7 @@ function parseKeys(buffer) {
         curve: data.parameters.value,
         privateKey: data.privateKey
       };
-    default: throw new Error('unknown key type ' +  type);
+    default: throw new Error('unknown key type ' + type);
   }
 }
 parseKeys.signature = asn1.signature;
@@ -91,7 +96,7 @@ function decrypt(data, password) {
   var algo = aesid[data.algorithm.decrypt.cipher.algo.join('.')];
   var iv = data.algorithm.decrypt.cipher.iv;
   var cipherText = data.subjectPrivateKey;
-  var keylen = parseInt(algo.split('-')[1], 10)/8;
+  var keylen = parseInt(algo.split('-')[1], 10) / 8;
   var key = compat.pbkdf2Sync(password, salt, iters, keylen);
   var cipher = ciphers.createDecipheriv(algo, key, iv);
   var out = [];
