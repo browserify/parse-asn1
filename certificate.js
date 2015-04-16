@@ -1,3 +1,6 @@
+// from https://github.com/Rantanen/node-dtls/blob/25a7dc861bda38cfeac93a723500eea4f0ac2e86/Certificate.js
+// thanks to @Rantanen
+
 'use strict';
 
 var asn = require( 'asn1.js' );
