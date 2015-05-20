@@ -1,10 +1,9 @@
 var createHash = require('create-hash');
 
 module.exports = function evp(password, salt, keyLen) {
-  keyLen = keyLen/8;
+  keyLen = keyLen / 8;
   
   var ki = 0;
-  var ii = 0;
   var key = new Buffer(keyLen);
   var addmd = 0;
   var md, md_buf;
@@ -30,7 +29,10 @@ module.exports = function evp(password, salt, keyLen) {
         break;
       }
       
-      key[ki++] = md_buf[i++];
+      key[ki] = md_buf[i];
+      
+      ki++;
+      i++;
       keyLen--;
     }
   }
