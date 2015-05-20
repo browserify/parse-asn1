@@ -19,7 +19,7 @@ module.exports = function evp (password, salt, keyLen) {
     buffer = hash.digest()
     
     for (var i = 0; i < buffer.length; ++i) {
-      if (keyLen === 0) break;
+      if (keyLen === 0) break
       
       key[offset] = buffer[i]
       
