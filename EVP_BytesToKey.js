@@ -5,23 +5,20 @@ module.exports = function evp (password, salt, keyLen) {
   
   var ki = 0
   var key = new Buffer(keyLen)
-  var addmd = 0
-  var md, md_buf, i
+  var md_buf
   
   while (keyLen > 0) {
-    md = createHash('md5')
+    var md = createHash('md5')
     
-    if (addmd > 0) {
+    if (md_buf) {
        md.update(md_buf)
     }
-    
-    addmd++
     
     md.update(password)
     md.update(salt)
     md_buf = md.digest()
     
-    i = 0
+    var i = 0
     
     while (keyLen > 0) {
       if (i === md_buf.length) {
@@ -37,9 +34,7 @@ module.exports = function evp (password, salt, keyLen) {
   }
   
   // zero the md_buf
-  for (i = 0; i < md_buf.length; i++) {
-    md_buf[i] = 0
-  }
+  md_buf.fill(0)
   
   return key
 }
