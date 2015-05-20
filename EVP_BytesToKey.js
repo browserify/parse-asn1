@@ -1,4 +1,4 @@
-var createHash = require('create-hash');
+var createHash = require('create-hash')
 
 module.exports = function evp (password, salt, keyLen) {
   keyLen = keyLen / 8
