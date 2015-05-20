@@ -28,18 +28,14 @@ module.exports = function (okey, password) {
     data: decrypted
   };
 };
+
 // http://stackoverflow.com/a/7033705
-function wrap(str) {
-  var chunks = [];
-  while (str) {
-    if (str.length < 64) {
-      chunks.push(str);
-      break;
-    }
-    else {
-      chunks.push(str.slice(0, 64));
-      str = str.slice(64);
-    }
+function wrap (str) {
+  var chunks = []
+  
+  for (var i = 0; i < str.length; i += 64) {
+    chunks.push(str.slice(i, i + 64))
   }
-  return chunks.join("\n");
+  
+  return chunks.join("\n")
 }
