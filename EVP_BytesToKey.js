@@ -3,38 +3,33 @@ var createHash = require('create-hash');
 module.exports = function evp (password, salt, keyLen) {
   keyLen = keyLen / 8
   
-  var ki = 0
+  var offset = 0
   var key = new Buffer(keyLen)
-  var md_buf
+  var buffer
   
   while (keyLen > 0) {
-    var md = createHash('md5')
+    var hash = createHash('md5')
     
-    if (md_buf) {
-       md.update(md_buf)
+    if (buffer) {
+      hash.update(buffer)
     }
     
-    md.update(password)
-    md.update(salt)
-    md_buf = md.digest()
+    hash.update(password)
+    hash.update(salt)
+    buffer = hash.digest()
     
-    var i = 0
-    
-    while (keyLen > 0) {
-      if (i === md_buf.length) {
-        break
-      }
+    for (var i = 0; i < buffer.length; ++i) {
+      if (keyLen === 0) break;
       
-      key[ki] = md_buf[i]
+      key[offset] = buffer[i]
       
-      ki++
-      i++
       keyLen--
+      offset++
     }
   }
   
-  // zero the md_buf
-  md_buf.fill(0)
+  // zero the temporary buffer
+  buffer.fill(0)
   
   return key
 }
