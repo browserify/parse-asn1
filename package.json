@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/calvinmetcalf/parse-asn1.git"
+    "url": "git://github.com/crypto-browserify/parse-asn1.git"
   },
   "author": "",
   "license": "ISC",
