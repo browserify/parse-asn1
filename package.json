@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test"
+    "unit": "node ./test",
+    "standard": "standard",
+    "test": "npm run standard && npm run unit"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
     "pbkdf2": "^3.0.3"
   },
   "devDependencies": {
-    "tape": "^3.4.0"
+    "tape": "^3.4.0",
+    "standard": "^5.0.0"
   }
 }
