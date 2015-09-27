@@ -18,6 +18,7 @@
     "asn1.js": "^2.0.0",
     "browserify-aes": "^1.0.0",
     "create-hash": "^1.1.0",
+    "evp_bytestokey": "^1.0.0",
     "pbkdf2": "^3.0.3"
   },
   "devDependencies": {
