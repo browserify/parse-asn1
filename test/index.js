@@ -1,6 +1,5 @@
 var test = require('tape')
 var fs = require('fs')
-var priv1024 = fs.readFileSync(__dirname + '/rsa.1024.priv')
 var parseKey = require('../')
 var crypto = require('crypto')
 var rsa1024 = {
