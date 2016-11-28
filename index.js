@@ -3,7 +3,7 @@ var asn1 = require('./asn1')
 var aesid = require('./aesid.json')
 var fixProc = require('./fixProc')
 var ciphers = require('browserify-aes')
-var compat = require('pbkdf2-compat')
+var compat = require('pbkdf2')
 module.exports = parseKeys
 
 function parseKeys (buffer) {
