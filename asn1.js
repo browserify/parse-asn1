@@ -29,6 +29,14 @@ var RSAPublicKey = asn1.define('RSAPublicKey', function () {
 })
 exports.RSAPublicKey = RSAPublicKey
 
+var PublicKey = asn1.define('SubjectPublicKeyInfo', function () {
+  this.seq().obj(
+    this.key('algorithm').use(AlgorithmIdentifier),
+    this.key('subjectPublicKey').bitstr()
+  )
+})
+exports.PublicKey = PublicKey
+
 var AlgorithmIdentifier = asn1.define('AlgorithmIdentifier', function () {
   this.seq().obj(
     this.key('algorithm').objid(),
@@ -41,14 +49,6 @@ var AlgorithmIdentifier = asn1.define('AlgorithmIdentifier', function () {
     ).optional()
   )
 })
-
-var PublicKey = asn1.define('SubjectPublicKeyInfo', function () {
-  this.seq().obj(
-    this.key('algorithm').use(AlgorithmIdentifier),
-    this.key('subjectPublicKey').bitstr()
-  )
-})
-exports.PublicKey = PublicKey
 
 var PrivateKeyInfo = asn1.define('PrivateKeyInfo', function () {
   this.seq().obj(
@@ -98,12 +98,6 @@ exports.DSAparam = asn1.define('DSAparam', function () {
   this.int()
 })
 
-var ECParameters = asn1.define('ECParameters', function () {
-  this.choice({
-    namedCurve: this.objid()
-  })
-})
-
 var ECPrivateKey = asn1.define('ECPrivateKey', function () {
   this.seq().obj(
     this.key('version').int(),
@@ -113,6 +107,12 @@ var ECPrivateKey = asn1.define('ECPrivateKey', function () {
   )
 })
 exports.ECPrivateKey = ECPrivateKey
+
+var ECParameters = asn1.define('ECParameters', function () {
+  this.choice({
+    namedCurve: this.objid()
+  })
+})
 
 exports.signature = asn1.define('signature', function () {
   this.seq().obj(
