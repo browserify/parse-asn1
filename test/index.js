@@ -1,79 +1,83 @@
 var test = require('tape')
 var fs = require('fs')
+const path = require('path')
 var parseKey = require('../')
+function loadPath (str) {
+  return fs.readFileSync(path.join(__dirname, str))
+}
 var rsa1024 = {
-  private: fs.readFileSync(__dirname + '/rsa.1024.priv'),
-  public: fs.readFileSync(__dirname + '/rsa.1024.pub')
+  private: loadPath('/rsa.1024.priv'),
+  public: loadPath('/rsa.1024.pub')
 }
 var rsa2028 = {
-  private: fs.readFileSync(__dirname + '/rsa.2028.priv'),
-  public: fs.readFileSync(__dirname + '/rsa.2028.pub')
+  private: loadPath('/rsa.2028.priv'),
+  public: loadPath('/rsa.2028.pub')
 }
 var nonrsa1024 = {
-  private: fs.readFileSync(__dirname + '/1024.priv'),
-  public: fs.readFileSync(__dirname + '/1024.pub')
+  private: loadPath('/1024.priv'),
+  public: loadPath('/1024.pub')
 }
 var pass1024 = {
   private: {
     passphrase: 'fooo',
-    key: fs.readFileSync(__dirname + '/pass.1024.priv')
+    key: loadPath('/pass.1024.priv')
   },
-  public: fs.readFileSync(__dirname + '/pass.1024.pub')
+  public: loadPath('/pass.1024.pub')
 }
 var ec = {
-  private: fs.readFileSync(__dirname + '/ec.priv'),
-  public: fs.readFileSync(__dirname + '/ec.pub')
+  private: loadPath('/ec.priv'),
+  public: loadPath('/ec.pub')
 }
 var ecpass = {
   private: {
-    key: fs.readFileSync(__dirname + '/ec.pass.priv'),
+    key: loadPath('/ec.pass.priv'),
     passphrase: 'bard'
   },
-  public: fs.readFileSync(__dirname + '/ec.pub')
+  public: loadPath('/ec.pub')
 }
 var dsa = {
-  private: fs.readFileSync(__dirname + '/dsa.1024.priv'),
-  public: fs.readFileSync(__dirname + '/dsa.1024.pub')
+  private: loadPath('/dsa.1024.priv'),
+  public: loadPath('/dsa.1024.pub')
 }
 var dsa2 = {
-  private: fs.readFileSync(__dirname + '/dsa.2048.priv'),
-  public: fs.readFileSync(__dirname + '/dsa.2048.pub')
+  private: loadPath('/dsa.2048.priv'),
+  public: loadPath('/dsa.2048.pub')
 }
 var dsapass = {
   private: {
-    key: fs.readFileSync(__dirname + '/pass.dsa.1024.priv'),
+    key: loadPath('/pass.dsa.1024.priv'),
     passphrase: 'password'
   },
-  public: fs.readFileSync(__dirname + '/pass.dsa.1024.pub')
+  public: loadPath('/pass.dsa.1024.pub')
 }
 var dsapass2 = {
   private: {
-    key: fs.readFileSync(__dirname + '/pass2.dsa.1024.priv'),
+    key: loadPath('/pass2.dsa.1024.priv'),
     passphrase: 'password'
   },
-  public: fs.readFileSync(__dirname + '/pass2.dsa.1024.pub')
+  public: loadPath('/pass2.dsa.1024.pub')
 }
 var rsapass = {
   private: {
-    key: fs.readFileSync(__dirname + '/pass.rsa.1024.priv'),
+    key: loadPath('/pass.rsa.1024.priv'),
     passphrase: 'password'
   },
-  public: fs.readFileSync(__dirname + '/pass.rsa.1024.pub')
+  public: loadPath('/pass.rsa.1024.pub')
 }
 var rsapass2 = {
   private: {
-    key: fs.readFileSync(__dirname + '/pass.rsa.2028.priv'),
+    key: loadPath('/pass.rsa.2028.priv'),
     passphrase: 'password'
   },
-  public: fs.readFileSync(__dirname + '/pass.rsa.2028.pub')
+  public: loadPath('/pass.rsa.2028.pub')
 }
 var cert = {
-  private: fs.readFileSync(__dirname + '/rsa.1024.priv'),
-  public: fs.readFileSync(__dirname + '/node.cert')
+  private: loadPath('/rsa.1024.priv'),
+  public: loadPath('/node.cert')
 }
 var cert2 = {
-  private: fs.readFileSync(__dirname + '/cert.priv'),
-  public: fs.readFileSync(__dirname + '/cert.pub')
+  private: loadPath('/cert.priv'),
+  public: loadPath('/cert.pub')
 }
 var i = 0
 function testIt (keys) {
