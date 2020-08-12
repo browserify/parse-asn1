@@ -1,6 +1,6 @@
 {
   "name": "parse-asn1",
-  "version": "5.1.6",
+  "version": "5.1.7",
   "description": "utility library for parsing asn1 files for use with browserify-sign.",
   "main": "index.js",
   "files": [
@@ -22,7 +22,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "asn1.js": "^5.2.0",
+    "asn1.js": "^4.0.0",
     "browserify-aes": "^1.0.0",
     "evp_bytestokey": "^1.0.0",
     "pbkdf2": "^3.0.3",
