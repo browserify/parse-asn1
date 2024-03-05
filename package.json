@@ -14,7 +14,8 @@
     "lint": "eslint --ext=js,mjs .",
     "tests-only": "tape 'test/**/*.js'",
     "pretest": "npm run lint",
-    "test": "npm run tests-only"
+    "test": "npm run tests-only",
+    "posttest": "aud --production"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@ljharb/eslint-config": "^21.1.0",
+    "aud": "^2.0.4",
     "eslint": "=8.8.0",
     "tape": "^5.0.1"
   }
