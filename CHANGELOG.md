@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v5.1.7](https://github.com/browserify/parse-asn1/compare/v5.1.6...v5.1.7) - 2024-03-05
+
+### Commits
+
+- [eslint] switch from standard to eslint [`794cf67`](https://github.com/browserify/parse-asn1/commit/794cf67208a69d4cc855f784a299906c6d6ef671)
+- [meta] add `auto-changelog` [`8961374`](https://github.com/browserify/parse-asn1/commit/89613740568d94746d45adf8d1af029922ab9d54)
+- [Tests] migrate from travis to github actions [`fdbdda5`](https://github.com/browserify/parse-asn1/commit/fdbdda5eeeaec0aeb8a740fa49deb449a47390ab)
+- [meta] fix package.json indentation [`60eb8f3`](https://github.com/browserify/parse-asn1/commit/60eb8f3e2bd9e91dca0e9fd5e617864cde35cb35)
+- [meta] switch from files to npmignore [`e41c881`](https://github.com/browserify/parse-asn1/commit/e41c881bf4cbf97609a82bfe4bfde4fdfcf54e39)
+- [Tests] Buffer.from requires node &gt;= 4 [`0f9ba08`](https://github.com/browserify/parse-asn1/commit/0f9ba08be2b626fc4d8d01dd96916c1dbd6a8fb7)
+- [Deps] update `browserify-aes`, `evp_bytestokey`, `pbkdf2`, `safe-buffer` [`b5a64da`](https://github.com/browserify/parse-asn1/commit/b5a64da4651941980c91c04e9a4fae814c654aec)
+- Only apps should have lockfiles [`75803fd`](https://github.com/browserify/parse-asn1/commit/75803fda05246c4cf5cd968c5cc87494c03d3cf0)
+- [meta] add `safe-publish-latest` [`aba1931`](https://github.com/browserify/parse-asn1/commit/aba1931df788100a7ffaf6054e5b024caf3d9a23)
+- [Tests] use `aud` [`2a848f6`](https://github.com/browserify/parse-asn1/commit/2a848f6c55d84896a52dcb3bcb54be637e42886d)
+- [meta] add missing `engines.node` [`87e2bd3`](https://github.com/browserify/parse-asn1/commit/87e2bd3f9657ecb4fba7903a0c56305de273c3b6)
+- [Dev Deps] update `tape` [`50baf1c`](https://github.com/browserify/parse-asn1/commit/50baf1c6a4af51a3d4eac1d1508cda69f6f5252a)
+- [Deps] downgrade `asn1.js` to v4 since v5 drops support for node &lt; 4 [`f230870`](https://github.com/browserify/parse-asn1/commit/f23087045497c93bd0a151e29b1e3f738e898cb8)
+- [Deps] pin `hash-base` to ~3.0, due to a breaking change [`f15dc5f`](https://github.com/browserify/parse-asn1/commit/f15dc5f12898fd955ef27d037ba649724f6c5e17)
+
 ## [v5.1.6](https://github.com/browserify/parse-asn1/compare/v5.1.5...v5.1.6) - 2020-08-11
 
 ### Merged
