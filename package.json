@@ -24,7 +24,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "asn1.js": "^5.2.0",
+    "asn1.js": "^4.10.1",
     "browserify-aes": "^1.0.0",
     "evp_bytestokey": "^1.0.0",
     "hash-base": "~3.0",
