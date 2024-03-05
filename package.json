@@ -27,6 +27,7 @@
     "asn1.js": "^5.2.0",
     "browserify-aes": "^1.0.0",
     "evp_bytestokey": "^1.0.0",
+    "hash-base": "~3.0",
     "pbkdf2": "^3.0.3",
     "safe-buffer": "^5.1.1"
   },
