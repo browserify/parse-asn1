@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v5.1.8](https://github.com/browserify/parse-asn1/compare/v5.1.7...v5.1.8) - 2025-09-22
+
+### Commits
+
+- [actions] split out node 10-20, and 20+ [`e186dbf`](https://github.com/browserify/parse-asn1/commit/e186dbf58216c9013b560f3f9627347985abd202)
+- [meta] raise engines.node to match dep graph [`29d1def`](https://github.com/browserify/parse-asn1/commit/29d1defdaf3fc113069347a2edd284d118a73775)
+- [Dev Deps] update `@ljharb/eslint-config`, `auto-changelog`, `tape` [`2648018`](https://github.com/browserify/parse-asn1/commit/264801813422e4f88ba1834e40e026cdf6bf3f30)
+- [Deps] update `hash-base`, `pbkdf2` [`3ce78af`](https://github.com/browserify/parse-asn1/commit/3ce78af3720c95a71e1f264ebb20e8af63ad00bc)
+- [Tests] replace `aud` with `npm audit` [`5ea1506`](https://github.com/browserify/parse-asn1/commit/5ea1506b28cb7c4f976ddb89877c0fe92d183ec9)
+- [Tests] fix tests in node `4.0 - 4.4 | 5.0 - 5.9` [`4d24a07`](https://github.com/browserify/parse-asn1/commit/4d24a070402332083357da4edcacbee9d98e9dd5)
+- [meta] add proper `npm version` npmrc settings [`f5d7025`](https://github.com/browserify/parse-asn1/commit/f5d702582d762e96a7deb7338a398a32224e9424)
+- [Deps] remove unused `hash-base` dep [`93663af`](https://github.com/browserify/parse-asn1/commit/93663af2ba632c5a4c76847d410836ca8da3f00b)
+- [Dev Deps] add missing peer dep [`f3e9076`](https://github.com/browserify/parse-asn1/commit/f3e9076f00bd43bacc283979bfb3c390e8414580)
+
 ## [v5.1.7](https://github.com/browserify/parse-asn1/compare/v5.1.6...v5.1.7) - 2024-03-05
 
 ### Commits
