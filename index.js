@@ -4,7 +4,7 @@ var asn1 = require('./asn1');
 var aesid = require('./aesid.json');
 var fixProc = require('./fixProc');
 var ciphers = require('browserify-aes');
-var compat = require('pbkdf2');
+var pbkdf2Sync = require('pbkdf2').pbkdf2Sync;
 var Buffer = require('safe-buffer').Buffer;
 
 function decrypt(data, password) {
@@ -14,7 +14,7 @@ function decrypt(data, password) {
 	var iv = data.algorithm.decrypt.cipher.iv;
 	var cipherText = data.subjectPrivateKey;
 	var keylen = parseInt(algo.split('-')[1], 10) / 8;
-	var key = compat.pbkdf2Sync(password, salt, iters, keylen, 'sha1');
+	var key = pbkdf2Sync(password, salt, iters, keylen, 'sha1');
 	var cipher = ciphers.createDecipheriv(algo, key, iv);
 	var out = [];
 	out.push(cipher.update(cipherText));

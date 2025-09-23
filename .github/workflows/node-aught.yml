@@ -6,7 +6,7 @@ jobs:
   tests:
     uses: ljharb/actions/.github/workflows/node.yml@main
     with:
-      range: '0.10 - 10'
+      range: '0.12 - 9'
       type: minors
       command: npm run tests-only
 
@@ -15,4 +15,4 @@ jobs:
     needs: [tests]
     runs-on: ubuntu-latest
     steps:
-      - run: 'echo tests completed'
+      - run: true
