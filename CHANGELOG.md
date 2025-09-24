@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v5.1.9](https://github.com/browserify/parse-asn1/compare/v5.1.8...v5.1.9) - 2025-09-24
+
+### Commits
+
+- [meta] node 0.10 works now [`4596fae`](https://github.com/browserify/parse-asn1/commit/4596fae4ba80df5db0f335a400fc53d22b307633)
+- [Deps] update `pbkdf2` [`6ef651a`](https://github.com/browserify/parse-asn1/commit/6ef651a9e6373e6e09c71330ea4a4cac4329c009)
+
 ## [v5.1.8](https://github.com/browserify/parse-asn1/compare/v5.1.7...v5.1.8) - 2025-09-22
 
 ### Commits
