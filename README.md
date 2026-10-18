@@ -6,3 +6,13 @@
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 utility library for parsing asn1 files for use with browserify-sign.
+
+## Security
+
+When decrypting an encrypted PKCS#8 (`ENCRYPTED PRIVATE KEY`) key,
+the PBKDF2 iteration count is read from the key's own (unauthenticated) parameters.
+To avoid an attacker-supplied key forcing unbounded key-derivation work,
+the iteration count is capped at 10,000,000;
+a key outside the range `1 … 10000000` is rejected with a `RangeError`.
+If you must parse untrusted encrypted PKCS#8 material,
+still bound its size before passing it in.

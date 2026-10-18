@@ -7,9 +7,17 @@ var ciphers = require('browserify-aes');
 var pbkdf2Sync = require('pbkdf2').pbkdf2Sync;
 var Buffer = require('safe-buffer').Buffer;
 
+// the iteration count comes from unauthenticated PKCS#8 parameters, so an
+// attacker-supplied key could otherwise force unbounded PBKDF2 work before
+// decryption even fails (GHSA-4x79-9w89-pmm5); cap it like other crypto libs.
+var MAX_ITERATIONS = 10e6;
+
 function decrypt(data, password) {
 	var salt = data.algorithm.decrypt.kde.kdeparams.salt;
 	var iters = parseInt(data.algorithm.decrypt.kde.kdeparams.iters.toString(), 10);
+	if (iters !== iters || iters < 1 || iters > MAX_ITERATIONS) {
+		throw new RangeError('iteration count must be an integer between 1 and ' + MAX_ITERATIONS + ', got: ' + iters);
+	}
 	var algo = aesid[data.algorithm.decrypt.cipher.algo.join('.')];
 	var iv = data.algorithm.decrypt.cipher.iv;
 	var cipherText = data.subjectPrivateKey;
