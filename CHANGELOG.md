@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v5.1.10](https://github.com/browserify/parse-asn1/compare/v5.1.9...v5.1.10) - 2026-10-18
+
+### Commits
+
+- [Fix] bound PBKDF2 iteration count from untrusted PKCS#8 params [`816b8f8`](https://github.com/browserify/parse-asn1/commit/816b8f80bd0443eff2866c0f0aad4727db8a42fb)
+- [Dev Deps] update `@ljharb/eslint-config`, `auto-changelog`, `eslint`, `npmignore`, `tape` [`7897881`](https://github.com/browserify/parse-asn1/commit/78978812abba91cc5a3eb3e4878b6f8077fb98d2)
+- [Deps] update `pbkdf2` [`cf487ca`](https://github.com/browserify/parse-asn1/commit/cf487cacd6e8c4106596957b2fe6d344eb05ed35)
+- [actions] set least-privilege `cache-mode` [`f7d0f6f`](https://github.com/browserify/parse-asn1/commit/f7d0f6fcd14b03c9f9619e61a35c1f0957e23221)
+
 ## [v5.1.9](https://github.com/browserify/parse-asn1/compare/v5.1.8...v5.1.9) - 2025-09-24
 
 ### Commits
@@ -105,13 +114,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Commits
 
-- fix formatting [`febc75d`](https://github.com/browserify/parse-asn1/commit/febc75d6ae3e995ab28d4b1d3e5a040cdd1afb28)
-- merge [`5e306be`](https://github.com/browserify/parse-asn1/commit/5e306be93671655c518569868066f53c9b298b62)
 - fix style [`6131733`](https://github.com/browserify/parse-asn1/commit/6131733f2cea84ca6394e3e6bfe2040daf7eae66)
 - cert parsing [`e571b18`](https://github.com/browserify/parse-asn1/commit/e571b18bf516bcd47c6a5699767ac27398a8e0df)
+- fix formatting [`febc75d`](https://github.com/browserify/parse-asn1/commit/febc75d6ae3e995ab28d4b1d3e5a040cdd1afb28)
 - update deps [`eab3500`](https://github.com/browserify/parse-asn1/commit/eab3500f62ddec3491e28c47dcfeb1e54459b747)
 - iter stuff [`00b030c`](https://github.com/browserify/parse-asn1/commit/00b030c2d304ca3a003591abdd10a6e7ef2ce68d)
 - credit [`c94dba3`](https://github.com/browserify/parse-asn1/commit/c94dba391223af0b72687868f88049bb0dfcb276)
+- merge [`5e306be`](https://github.com/browserify/parse-asn1/commit/5e306be93671655c518569868066f53c9b298b62)
 
 ## [v5.0.0](https://github.com/browserify/parse-asn1/compare/v4.0.0...v5.0.0) - 2015-10-29
 
